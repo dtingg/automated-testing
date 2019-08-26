@@ -1,17 +1,17 @@
 class Card
   attr_reader :value, :suit
   
-  def initialize(value, suit)
-    valid_values = (1..13).to_a
-    valid_suits = [:hearts, :spades, :clubs, :diamonds]
-    
-    if valid_values.include?(value)
+  VALUES = (1..13).to_a
+  SUITS = [:hearts, :spades, :clubs, :diamonds]
+  
+  def initialize(value, suit)    
+    if VALUES.include?(value)
       @value = value
     else
       raise ArgumentError.new("That is not a valid value.")
     end
     
-    if valid_suits.include?(suit)
+    if SUITS.include?(suit)
       @suit = suit
     else
       raise ArgumentError.new("That is not a valid suit.")
