@@ -15,6 +15,7 @@ describe Card do
     it "Raises an ArgumentError for invalid parameters" do
       expect {Card.new(0, :diamonds)}.must_raise ArgumentError
       expect {Card.new(14, :diamonds)}.must_raise ArgumentError
+      expect {Card.new(10, :clovers)}.must_raise ArgumentError 
       expect {Card.new(14, :clovers)}.must_raise ArgumentError
     end
   end
@@ -27,11 +28,17 @@ describe Card do
     end
     
     it "to_s returns a readable String value for Ace, Jack, Queen, King" do
-      card = Card.new(12, :hearts)
-      expect(card.to_s).must_equal "Queen of hearts"
+      card = Card.new(11, :hearts)
+      expect(card.to_s).must_equal "Jack of hearts"
       
-      ace = Card.new(1, :spades)
-      expect(ace.to_s).must_equal "Ace of spades"      
+      card = Card.new(12, :clubs)
+      expect(card.to_s).must_equal "Queen of clubs"
+      
+      card = Card.new(13, :spades)
+      expect(card.to_s).must_equal "King of spades"
+      
+      ace = Card.new(1, :diamonds)
+      expect(ace.to_s).must_equal "Ace of diamonds"      
     end
   end
   

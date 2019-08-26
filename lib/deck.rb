@@ -9,15 +9,19 @@ class Deck
   end
   
   def make_deck
-    VALUES.each do |value|
-      SUITS.each do |suit|
+    Card::VALUES.each do |value|
+      Card::SUITS.each do |suit|
         card_list.push(Card.new(value, suit))
       end
     end
   end
   
   def draw
-    # returns a card
+    return card_list.pop
+  end
+  
+  def count
+    return card_list.length
   end
   
   def shuffle
