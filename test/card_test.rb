@@ -2,7 +2,7 @@ require_relative 'test_helper'
 
 describe Card do
   describe "You can create a Card instance" do
-
+    
     it "Can be created" do
       [:hearts, :spades, :clubs, :diamonds].each do |suit|
         (1..13).each do |value|
@@ -11,42 +11,50 @@ describe Card do
         end
       end
     end
-
+    
     it "Raises an ArgumentError for invalid parameters" do
-      # To raise an ArgumentError in card.rb
-      # raise ArgumentError.new
       expect {Card.new(0, :diamonds)}.must_raise ArgumentError
       expect {Card.new(14, :diamonds)}.must_raise ArgumentError
       expect {Card.new(14, :clovers)}.must_raise ArgumentError
     end
   end
-
+  
   describe "Testing to_s" do
-
+    
     it "to_s returns a readable String value logically for values 2-10" do
-      # Test to ensure that to_s works for cards values 2-10
-      # for example:  "2 of diamonds"
+      card = Card.new(2, :diamonds)
+      expect(card.to_s).must_equal "2 of diamonds"
     end
-
+    
     it "to_s returns a readable String value for Ace, Jack, Queen, King" do
-      # Test to ensure that to_s works for cards values 1, and 11-13
-      # For example: "Queen of hearts"
-      # The current implementation of to_s does not address this feature
-      # Write the test, see it fail, then modify to_s to make it pass!
-      # (Consider writing a helper method!)
+      card = Card.new(12, :hearts)
+      expect(card.to_s).must_equal "Queen of hearts"
+      
+      ace = Card.new(1, :spades)
+      expect(ace.to_s).must_equal "Ace of spades"      
     end
   end
-
+  
   describe "Reader methods" do
-
-    it "Can retrieve the value of the card using a `.value`." do
-      # ensure that `.value works as expected`
+    
+    it "Can retrieve the value of a number card using a `.value`." do
+      card = Card.new(5, :spades)
+      expect(card.value).must_equal 5      
     end
-
-    it "Can retrieve the value of the card using a `.suit`." do
-      # ensure that `.suit works as expected returning the symbol of the suit`
-
+    
+    it "Can retrieve the value of a face card using a `.value`." do
+      card = Card.new(13, :spades)
+      expect(card.value).must_equal 13      
+    end
+    
+    it "Can retrieve the value of a number card using a `.suit`." do
+      card = Card.new(6, :hearts)
+      expect(card.suit).must_equal :hearts
+    end
+    
+    it "Can retrieve the value of a face card using a `.suit`." do
+      card = Card.new(1, :clubs)
+      expect(card.suit).must_equal :clubs
     end
   end
-
 end
